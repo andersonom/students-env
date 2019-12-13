@@ -1,0 +1,6 @@
+[submodule "StudentsManager"]
+	path = StudentsManager
+	url = https://github.com/andersonom/StudentsManager
+[submodule "StudentsManager-UI"]
+	path = StudentsManager-UI
+	url = https://github.com/andersonom/StudentsManager-UI

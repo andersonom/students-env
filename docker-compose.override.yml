@@ -1,0 +1,38 @@
+version: '3.4'
+
+services:
+  studentsmanager.ui:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - 8088:8088
+    networks:
+      - students-network 
+  redis.students:
+    image: redis:alpine
+    ports:
+      - "16379:6379"
+    networks:
+      - students-network
+  studentsmanager.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - 8089:8089
+    networks:
+      - students-network
+    depends_on:
+      - "db"
+  db:
+    image: microsoft/mssql-server-linux:2017-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "VcDERqwfaDs4bkEHDJ1H"
+    ports:
+      - "1401:1433"
+    networks:
+      - students-network
+
+networks: 
+    students-network:
+      external: true
